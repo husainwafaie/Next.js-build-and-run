@@ -56,137 +56,59 @@
   font-weight: 600;
 }
 
-.ctas {
-  display: flex;
-  gap: 16px;
-}
-
-.ctas a {
-  appearance: none;
-  border-radius: 128px;
-  height: 48px;
-  padding: 0 20px;
-  border: none;
-  border: 1px solid transparent;
-  transition: background 0.2s, color 0.2s, border-color 0.2s;
-  cursor: pointer;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  font-size: 16px;
-  line-height: 20px;
-  font-weight: 500;
-}
-
-a.primary {
-  background: var(--foreground);
-  color: var(--background);
-  gap: 8px;
-}
-
-a.secondary {
-  border-color: var(--gray-alpha-200);
-  min-width: 180px;
-}
-
-.footer {
-  grid-row-start: 3;
-  display: flex;
-  gap: 24px;
-}
-
-.footer a {
-  display: flex;
-  align-items: center;
-  gap: 8px;
-}
-
-.footer img {
-  flex-shrink: 0;
-}
-
-/* Enable hover only on non-touch devices */
-@media (hover: hover) and (pointer: fine) {
-  a.primary:hover {
-    background: var(--button-primary-hover);
-    border-color: transparent;
-  }
-
-  a.secondary:hover {
-    background: var(--button-secondary-hover);
-    border-color: transparent;
-  }
-
-  .footer a:hover {
-    text-decoration: underline;
-    text-underline-offset: 4px;
-  }
-}
-
-@media (max-width: 600px) {
-  .page {
-    padding: 32px;
-    padding-bottom: 80px;
-  }
-
-  .main {
-    align-items: center;
-  }
-
-  .main ol {
-    text-align: center;
-  }
-
-  .ctas {
-    flex-direction: column;
-  }
-
-  .ctas a {
-    font-size: 14px;
-    height: 40px;
-    padding: 0 16px;
-  }
-
-  a.secondary {
-    min-width: auto;
-  }
-
-  .footer {
-    flex-wrap: wrap;
-    align-items: center;
-    justify-content: center;
-  }
-}
-
-@media (prefers-color-scheme: dark) {
-  .logo {
-    filter: invert();
-  }
-}
-
 .container {
   min-height: 100vh;
-  padding: 0 0.5rem;
+  padding: 2rem;
   display: flex;
   flex-direction: column;
   justify-content: center;
   align-items: center;
+  background: linear-gradient(45deg, #f3f3f3, #e6e6e6);
+  transition: background 0.5s ease;
+}
+
+@media (prefers-color-scheme: dark) {
+  .container {
+    background: linear-gradient(45deg, #2a2a2a, #1a1a1a);
+  }
 }
 
 .main {
-  padding: 5rem 0;
+  width: 100%;
+  max-width: 800px;
+  padding: 3rem;
   flex: 1;
   display: flex;
   flex-direction: column;
   justify-content: center;
   align-items: center;
+  background: rgba(255, 255, 255, 0.8);
+  border-radius: 15px;
+  box-shadow: 0 10px 30px rgba(0, 0, 0, 0.1);
+  backdrop-filter: blur(10px);
+  transition: all 0.3s ease;
+}
+
+@media (prefers-color-scheme: dark) {
+  .main {
+    background: rgba(0, 0, 0, 0.6);
+    box-shadow: 0 10px 30px rgba(255, 255, 255, 0.05);
+  }
 }
 
 .title {
-  margin: 0;
+  margin: 0 0 2rem 0;
   line-height: 1.15;
-  font-size: 4rem;
+  font-size: 3rem;
   text-align: center;
+  color: #333;
+  transition: color 0.3s ease;
+}
+
+@media (prefers-color-scheme: dark) {
+  .title {
+    color: #f0f0f0;
+  }
 }
 
 .quote {
@@ -194,18 +116,66 @@ a.secondary {
   line-height: 1.5;
   font-size: 1.5rem;
   text-align: center;
+  color: #555;
+  max-width: 100%;
+  opacity: 0;
+  transform: translateY(20px);
+  animation: fadeIn 0.5s ease forwards;
+  transition: color 0.3s ease;
+}
+
+@media (prefers-color-scheme: dark) {
+  .quote {
+    color: #d0d0d0;
+  }
+}
+
+@keyframes fadeIn {
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
 }
 
 .button {
   background-color: #0070f3;
   color: white;
   border: none;
-  padding: 0.5rem 1rem;
+  padding: 0.8rem 1.5rem;
   font-size: 1rem;
   cursor: pointer;
-  transition: background-color 0.3s ease;
+  border-radius: 5px;
+  transition: all 0.3s ease;
+  box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
 }
 
 .button:hover {
   background-color: #0051bb;
+  transform: translateY(-2px);
+  box-shadow: 0 6px 8px rgba(0, 0, 0, 0.15);
+}
+
+.button:active {
+  transform: translateY(0);
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+}
+
+@media (max-width: 850px) {
+  .main {
+    width: 90%;
+    padding: 2rem;
+  }
+
+  .title {
+    font-size: 2rem;
+  }
+
+  .quote {
+    font-size: 1.2rem;
+  }
+
+  .button {
+    padding: 0.6rem 1.2rem;
+    font-size: 0.9rem;
+  }
 }
