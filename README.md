@@ -1,3 +1,6 @@
+# Random Quote Generator 
+https://husainwafaie.github.io/Next.js-build-and-run/
+
 This is a [Next.js](https://nextjs.org) project bootstrapped with [`create-next-app`](https://nextjs.org/docs/app/api-reference/cli/create-next-app).
 
 ## Getting Started
