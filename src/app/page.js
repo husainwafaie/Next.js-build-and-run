@@ -1,6 +1,6 @@
 'use client';
 
-import { useState } from 'react';
+import { useState, useEffect } from 'react';
 import styles from './page.module.css';
 
 const quotes = [
@@ -23,17 +23,26 @@ const quotes = [
 
 export default function Home() {
   const [quote, setQuote] = useState(quotes[0]);
+  const [key, setKey] = useState(0);
 
   const getRandomQuote = () => {
-    const randomIndex = Math.floor(Math.random() * quotes.length);
-    setQuote(quotes[randomIndex]);
+    let newQuote;
+    do {
+      newQuote = quotes[Math.floor(Math.random() * quotes.length)];
+    } while (newQuote === quote);
+    setQuote(newQuote);
+    setKey(prevKey => prevKey + 1);
   };
+
+  useEffect(() => {
+    getRandomQuote();
+  }, []);
 
   return (
     <div className={styles.container}>
       <main className={styles.main}>
         <h1 className={styles.title}>Random Quote Generator</h1>
-        <p className={styles.quote}>{quote}</p>
+        <p key={key} className={styles.quote}>{quote}</p>
         <button className={styles.button} onClick={getRandomQuote}>
           Get New Quote
         </button>
